@@ -1,8 +1,12 @@
+#!/usr/bin/python3
+from add_0 import add
+
 if __name__ == "__main__":
-    from add_0 import add # type: ignore
-    
+    """
+
+    Prints the result of the addition between two numbers
+
+    """
     a = 1
     b = 2
-    result = add(a, b)
-    
-    print(f"{a} + {b} = {result}")
+    print("{:d} + {:d} = {:d}".format(a, b, add(a, b)))
