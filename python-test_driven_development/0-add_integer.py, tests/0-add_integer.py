@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def add_integer(a, b=98):
     """
     adds an integer
@@ -17,4 +18,3 @@ def add_integer(a, b=98):
         else:
             raise TypeError("b must be an integer")
     return a + b
-    
