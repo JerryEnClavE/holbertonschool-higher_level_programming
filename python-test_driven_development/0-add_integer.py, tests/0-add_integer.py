@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-"""
-    Insert here module comment
-"""
-
-
 def add_integer(a, b=98):
-    """ add two integers or flots """
-    if type(a) is not int and type(a) is not float:
+    # Check if 'a' is an integer or a float
+    if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
-    if type(b) is not int and type(b) is not float:
+    
+    # Check if 'b' is an integer or a float
+    if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
-    if type(a) is float:
-        a = int(a)
-    if type(b) is float:
-        b = int(b)
-    return (a + b)
+    
+    # Cast both 'a' and 'b' to integers
+    a = int(a)
+    b = int(b)
+    
+    # Return the sum
+    return a + b
