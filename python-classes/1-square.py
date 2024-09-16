@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""empthy"""
+"""empthy definicion"""
+
+
 class Square:
-    """defin sqr"""
+    """this is a square class"""
     def __init__(self, size):
         self.__size = size
