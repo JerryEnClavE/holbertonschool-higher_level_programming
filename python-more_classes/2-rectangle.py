@@ -4,7 +4,7 @@
 
 class Rectangle:
     """
-    Class that defines properties of rectangle by: (based on 0-rectangle.py).
+    Class that defines properties of rectangle by: (based on 1-rectangle.py).
 
     Attributes:
         width (int): width of the rectangle.
@@ -74,3 +74,21 @@ class Rectangle:
         else:
             self.__height = value
 
+    def area(self):
+        """Calculates area of a rectangle.
+
+        Returns:
+            int: area.
+        """
+        return self.__height * self.__width
+
+    def perimeter(self):
+        """Calculates perimeter of a rectangle
+
+        Returns:
+            int: perimeter.
+        """
+        if self.__height == 0 or self.width == 0:
+            return 0
+        else:
+            return 2 * (self.__height + self.__width)
