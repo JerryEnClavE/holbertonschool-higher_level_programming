@@ -2,6 +2,7 @@
 from abc import ABC, abstractmethod
 import math
 
+
 # Step 1: Abstract Shape class
 class Shape(ABC):
     
@@ -13,6 +14,7 @@ class Shape(ABC):
     def perimeter(self):
         pass
 
+
 # Step 2a: Circle class
 class Circle(Shape):
     def __init__(self, radius):
@@ -23,6 +25,7 @@ class Circle(Shape):
     
     def perimeter(self):
         return 2 * math.pi * self.radius
+
 
 # Step 2b: Rectangle class
 class Rectangle(Shape):
@@ -36,10 +39,12 @@ class Rectangle(Shape):
     def perimeter(self):
         return 2 * (self.width + self.height)
 
+
 # Step 3: shape_info function
 def shape_info(shape):
     print(f"Area: {shape.area()}")
     print(f"Perimeter: {shape.perimeter()}")
+
 
 # Step 4: Testing the function
 circle = Circle(radius=5)
