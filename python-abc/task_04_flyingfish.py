@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# Parent class Fish
 class Fish:
 
     def swim(self):
@@ -9,6 +10,7 @@ class Fish:
         print("The fish live in the water")
 
 
+# Parent class Bird
 class Bird:
 
     def fly(self):
@@ -18,6 +20,7 @@ class Bird:
         print("The bird live in the sky")
 
 
+# FlyingFish class inheriting from both Fish and Bird
 class FlyingFish(Fish, Bird):
 
     def fly(self):
@@ -30,6 +33,7 @@ class FlyingFish(Fish, Bird):
         print("The flying fish lives both in water and the sky!")
 
 
+# Testing the FlyingFish class
 flying_fish = FlyingFish()
 flying_fish.swim()
 flying_fish.fly()
