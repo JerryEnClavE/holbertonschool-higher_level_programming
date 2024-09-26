@@ -13,7 +13,6 @@ class Fish:
         print("The fish live in the water")
 
 
-
 class Bird:
     """class"""
     def fly(self):
@@ -25,9 +24,7 @@ class Bird:
         print("The bird live in the sky")
 
 
-
 class FlyingFish(Fish, Bird):
-    """class"""
     """FlyingFish class inheriting from both Fish and Bird"""
     def fly(self):
         """met"""
