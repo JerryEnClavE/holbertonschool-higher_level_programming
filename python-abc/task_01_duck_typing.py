@@ -3,55 +3,52 @@ from abc import ABC, abstractmethod
 import math
 
 
-# Step 1: Abstract Shape class
 class Shape(ABC):
+    """class"""
 
     @abstractmethod
     def area(self):
+        """meat"""
         pass
 
     @abstractmethod
     def perimeter(self):
+        """meat"""
         pass
 
 
-# Step 2a: Circle class
 class Circle(Shape):
+    """class"""
     def __init__(self, radius):
+        """meat"""
         self.radius = radius
 
     def area(self):
+        """meat"""
         return math.pi * (self.radius ** 2)
 
     def perimeter(self):
+        """meat"""
         return 2 * math.pi * self.radius
 
 
-# Step 2b: Rectangle class
 class Rectangle(Shape):
+    """class"""
     def __init__(self, width, height):
+        """meat"""
         self.width = width
         self.height = height
 
     def area(self):
+        """meat"""
         return self.width * self.height
 
     def perimeter(self):
+        """meat"""
         return 2 * (self.width + self.height)
 
-
-# Step 3: shape_info function
-def shape_info(shape):
-    print(f"Area: {shape.area()}")
-    print(f"Perimeter: {shape.perimeter()}")
-
-
-# Step 4: Testing the function
-circle = Circle(radius=5)
-rectangle = Rectangle(width=4, height=6)
-
-print("Circle Info:")
-shape_info(circle)
-
-print("\nRectangle Info:")
-shape_info(rectangle)
+    #
+    def shape_info(shape):
+        """meat"""
+        print(f"Area: {shape.area()}")
+        print(f"Perimeter: {shape.perimeter()}")
