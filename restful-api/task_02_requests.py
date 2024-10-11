@@ -1,32 +1,62 @@
 import requests
 import csv
 
-# Función para obtener y mostrar los posts
-def fetch_and_print_posts():
-    url = 'https://jsonplaceholder.typicode.com/posts'
-    response = requests.get(url)
-    
-    # Imprimir el código de estado
-    print(f"Código de estado: {response.status_code}")
-    
-    # Si la solicitud es exitosa, analizar y mostrar los títulos de los posts
-    if response.status_code == 200:
-        posts = response.json()  # Analizar el JSON en una lista de diccionarios
-        for post in posts:
-            print(post['title'])
 
-# Función para obtener y guardar los posts en un archivo CSV
-def fetch_and_save_posts():
-    url = 'https://jsonplaceholder.typicode.com/posts'
-    response = requests.get(url)
+def fetch_and_display_posts():
+    """
+    Fetches posts from the API and prints their titles.
     
-    # Si la solicitud es exitosa, guardar los datos en un archivo CSV
-    if response.status_code == 200:
-        posts = response.json()  # Analizar el JSON en una lista de diccionarios
-        
-        # Preparar los datos para el CSV con claves seleccionadas: 'id', 'title', 'body'
-        fieldnames = ['id', 'title', 'body']
-        with open('posts.csv', mode='w', newline='', encoding='utf-8') as file:
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
-            writer.writeheader()  # Escribir la cabecera basada en las claves
-            writer.writerows(posts)  # Escribir la lista de diccionarios en el archivo CSV
+    Sends a GET request to JSONPlaceholder and prints the
+    titles if successful. Handles request errors.
+    """
+
+    url = 'https://www.jsonplaceholder.org/posts'
+
+    try:
+        response = requests.get(url)
+        print(f"Status Code: {response.status_code}")
+        response.raise_for_status()
+
+        posts = response.json()
+
+        for post in posts:
+            print(f"Post Title: {post['title']}")
+    
+    except requests.exceptions.RequestException as error:
+        print(f"Error: {error}")
+
+
+def fetch_and_store_posts_to_csv():
+    """
+    Fetches posts and saves them to a CSV file.
+    
+    Retrieves data from the API and stores the 'id', 'title', and 'body'
+    of each post in 'posts_data.csv'. Handles request errors.
+    """
+    
+    url = 'https://jsonplaceholder.typicode.com/posts'
+
+    try:
+        response = requests.get(url)
+        print(f"Response Status: {response.status_code}")
+        response.raise_for_status()
+
+        posts = response.json()
+
+        posts_data = [{'id': post['id'], 'title': post['title'], 'body': post['body']}
+                      for post in posts]
+
+        with open('posts_data.csv', mode='w', newline='', encoding='utf-8') as file:
+            csv_writer = csv.DictWriter(file, fieldnames=['id', 'title', 'body'])
+            csv_writer.writeheader()
+            csv_writer.writerows(posts_data)
+
+        print(f"Data saved to posts_data.csv")
+
+    except requests.exceptions.RequestException as error:
+        print(f"Error: {error}")
+
+
+if __name__ == "__main__":
+    fetch_and_display_posts()
+    fetch_and_store_posts_to_csv()
