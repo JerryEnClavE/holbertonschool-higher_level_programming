@@ -52,8 +52,8 @@ class simpleHTTPRequesHanlder(BaseHTTPRequestHandler):
             self.wfile.write(b"Endpoin not found")
 
 
-def run(server_class=HTTPServer, 
-        handler_class=simpleHTTPRequesHanlder, 
+def run(server_class=HTTPServer,
+        handler_class=simpleHTTPRequesHanlder,
         port=8000):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
