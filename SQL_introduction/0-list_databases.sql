@@ -1,0 +1,2 @@
+--00 database
+SHOW DATABASES
