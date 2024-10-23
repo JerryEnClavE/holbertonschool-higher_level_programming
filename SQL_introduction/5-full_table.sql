@@ -1,2 +1,2 @@
---show the tablet in the terminal
+--show the tablet in the terminal.
 SHOW CREATE TABLE first_table;
