@@ -1,5 +1,5 @@
--- Write a script that creates the table id_not_null on your MySQL server
--- description of data in table: id INT with the default value 1, name VARCHAR(256)
+-- Check that the table does not exist with IF NOT EXISTS
+-- Create the id column as INT, with a default value of 1 and NOT NULL.
 -- should not fail if exists
 
 CREATE TABLE IF NOT EXISTS id_not_null (
