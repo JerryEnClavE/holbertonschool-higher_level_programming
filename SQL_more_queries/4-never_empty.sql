@@ -1,4 +1,8 @@
--- Ensures that the table creation does not fail if the table already exists.
---Defines the id column as an integer, sets a default value of 1, and ensures it cannot be NULL.
---Defines the name column as a variable-length string
-CREATE TABLE IF NOT EXISTS force_name (id INT, name VARCHAR(256) NOT NULL);
+-- Write a script that creates the table id_not_null on your MySQL server
+-- description of data in table: id INT with the default value 1, name VARCHAR(256)
+-- should not fail if exists
+
+CREATE TABLE IF NOT EXISTS id_not_null (
+    id INT DEFAULT 1,
+    name VARCHAR(256)
+);
