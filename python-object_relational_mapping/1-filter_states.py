@@ -16,11 +16,11 @@ if __name__ == "__main__":
             charset="utf8"
         )
         cursor = connection.cursor()
-        
+
         # Ejecutar consulta SQL
         cursor.execute("SELECT * FROM states ORDER BY states.id ASC")
         rows = cursor.fetchall()
-        
+
         # Filtrar e imprimir filas
         for row in rows:
             if row[1].startswith("N"):
