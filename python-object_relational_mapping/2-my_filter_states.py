@@ -5,6 +5,7 @@ import MySQLdb
 from sys import argv
 
 if __name__ == "__main__":
+
     conn = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -12,8 +13,9 @@ if __name__ == "__main__":
         passwd=argv[2],
         db=argv[3]
     )
+
     cursor = conn.cursor()
-    cursor.execute("SELECT * FORM satates\
+    cursor.execute("SELECT * FORM states\
                 WHERE Binary name LIKE '{}' ORDER BY name ASC".format(argv[4]))
 
     rows = cursor.fetchall()
