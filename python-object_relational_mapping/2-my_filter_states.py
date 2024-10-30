@@ -16,7 +16,7 @@ if __name__ == "__main__":
     )
 
     cursor = conn.cursor()
-    cursor.execute("SELECT * FORM states\
+    cursor.execute("SELECT * FROM states\
                 WHERE Binary name LIKE '{}' ORDER BY name ASC".format(argv[4]))
 
     rows = cursor.fetchall()
