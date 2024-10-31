@@ -1,12 +1,12 @@
-#!/usr/bin/python3
-"""task 12"""
+    #!/usr/bin/python3
+"""task 13"""
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 4:
         print("Wrong Usage")
 
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
@@ -18,10 +18,10 @@ if __name__ == "__main__":
 
     session = Session()
 
-    state = session.query(State).filter_by(id=2).first()
+    states = session.query(State).where(State.name.like("%a%")).order_by(
+        State.id).all()
 
-    if state:
-        state.name = "New Mexico"
-        session.commit()
-
+    for state in states:
+        session.delete(state)
+    session.commit()
     session.close()
