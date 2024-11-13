@@ -2,69 +2,53 @@ from flask import Flask, render_template, request
 import json
 import csv
 
-
+# Initialize Flask app
 app = Flask(__name__)
 
+# Example function to load JSON data
+def load_json_data():
+    with open("products.json", "r") as file:
+        return json.load(file)
 
-def json_reader(filename):
-    with open(filename, 'r') as file:
-        data = json.load(file)
-    return data
-
-
-def csv_reader(filename):
-    with open(filename, 'r') as file:
+# Example function to load CSV data
+def load_csv_data():
+    products = []
+    with open("products.csv", "r") as file:
         reader = csv.DictReader(file)
-        data = [row for row in reader]
-    return data
+        for row in reader:
+            products.append(row)
+    return products
 
+# Route to display products
+@app.route("/products")
+def display_products():
+    source = request.args.get("source")
+    product_id = request.args.get("id", type=int)
+    products = []
+    error_message = None
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+    # Check if the source is valid
+    if source == "json":
+        try:
+            products = load_json_data()
+        except Exception:
+            error_message = "Error loading JSON data."
+    elif source == "csv":
+        try:
+            products = load_csv_data()
+        except Exception:
+            error_message = "Error loading CSV data."
+    else:
+        error_message = "Wrong source. Please choose either 'json' or 'csv'."
 
+    # If an id is provided, filter by id
+    if product_id and not error_message:
+        products = [p for p in products if p["id"] == product_id]
+        if not products:
+            error_message = "Product not found."
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+    return render_template("product_display.html", products=products, error_message=error_message)
 
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-
-@app.route('/products')
-def reader():
-    source = request.args.get('source')
-    product_id = request.args.get('id')
-
-    if source not in ['json', 'csv']:
-        return render_template('product_display.html', error='Wrong source')
-
-    data = []
-    if source == 'json':
-        data = json_reader('products.json')
-    elif source == 'csv':
-        data = csv_reader('products.csv')
-
-    if product_id:
-        filtered_data = [product for product in data if str(
-            product['id']) == product_id]
-        if not filtered_data:
-            return render_template('product_display.html', error='Product not found')
-        data = filtered_data
-
-    return render_template('product_display.html', products=data)
-
-
-@app.route('/items')
-def items():
-    with open("items.json") as file:
-        data = json.load(file)
-    item_list = data.get("items", [])
-    return render_template('items.html', items=item_list)
-
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+# Run the app
+if __name__ == "__main__":
+    app.run(debug=True)
